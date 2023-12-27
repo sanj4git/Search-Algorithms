@@ -1,0 +1,59 @@
+# Binary Search
+
+def binary_search(list, num):
+
+    lindex = 0
+    rindex = len(list) - 1
+
+    while lindex <= rindex:
+        mindex = (lindex + rindex) // 2
+        midnum = list[mindex]
+
+        if midnum == num:
+            return mindex
+
+        elif midnum > num:
+            rindex = mindex - 1
+
+        else:
+            lindex = mindex + 1
+
+
+
+# Binary Search Using Recursion
+
+def bs_recusrion(list, num, lindex, rindex):
+
+    midex = (lindex + rindex) // 2
+    midnum = list[midex]
+
+    if midnum == num:
+        return midex
+
+    elif midnum > num:
+        return bs_recusrion(list, num, lindex, midex - 1)
+
+    else:
+        return bs_recusrion(list, num, midex + 1, rindex)
+
+
+# Find all occurances of a given element
+
+def all_occurance(list, num):
+
+    index = binary_search(list, num)
+    indices = [index]
+
+    i = index - 1
+    while i >= 0 and list[i] == num:
+        indices.append(i)
+        i -= 1
+
+    i = index + 1
+    while i <= len(list) - 1 and list[i] == num:
+        indices.append(i)
+        i += 1
+
+    return indices
+
+print(all_occurance([1,2,2,2,2,2,2,3,4,5,666,],2))
